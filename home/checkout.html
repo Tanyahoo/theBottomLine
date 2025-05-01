@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- this 'viewport' allows for CSS to make view reponsive and change width at different breakpoints -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Checkout Page</title>
+	
+	
+   <!-- Bootstrap CSS link to use on page -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   
+</head>
+<style>
+
+
+     /* image covering background, fixed to prevent scrolling */
+	  body {
+      background-image: url('images/cashline2.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; 
+	  /* height of the body to 100% of the viewport height */
+      height: 100vh;
+      }
+
+
+
+	/* class for dynamic cart content to be styled */
+	.display-total {
+	 /* margin 40px from top */
+	 margin-top: 40px;
+	 /* background white transparent 90% */
+	 background-color: rgba(255, 255, 255, 0.9); 
+	 /* padding around text 20 px */
+     padding: 20px; 
+	 /* rounded corners  of 10px */
+      border-radius: 10px;
+	 }
+	 
+	 
+	 /* class to style form content */
+	 .form-background {
+	 /* background transparency 90% white */
+	  background-color: rgba(255, 255, 255, 0.9); 
+	 /* padding around text */
+     padding: 20px; 
+	 /* rounded corners of 10px */
+      border-radius: 10px;
+	 }
+
+
+
+</style>
+
+
+<body>
+
+<!-- responsive container for content -->
+<div class="container-fluid">
+	<!-- class to set image for background -->
+	<div class="background">
+
+	<!-- class to style dynamic content -->
+	<div class="col-md-6 offset-md-3">
+	
+	<!-- class to style dynamic content -->
+	<div class="display-total">
+    <h1 class="text-center">Order Checkout</h1>
+	
+	<!-- dynamic content order displayed from javascript logic -->
+    <p id="cart_items" class="text-center"></p>
+	
+	<!-- dynamic total cost calculated in javascript below -->
+    <h4 id="cost_total" class="text-center"></h4>
+	</div>
+	</div>
+	
+	<!-- specified break line size -->
+	<br style="margin-bottom: 20px">
+	
+	
+	<!-- class for sizing grid to 6 columns, centred -->
+	<div class="col-md-6 offset-md-3">
+	
+	<!-- class for styling contents of grid -->
+	<div class="form-background">
+	
+	<!-- form for user input that is required, action redirects to complete.html page -->
+    <form action="complete.html">
+        First Name: <br>
+        <input type="text" name="first name" placeholder= "Enter First Name"  required><br>
+        Last Name: <br>
+        <input type="text" name="last name" placeholder="Enter Last Name" required><br><br>
+
+			<!-- fieldset to put credit card input together -->
+			<fieldset>
+			<legend>Credit Card Details</legend>
+			
+			<!-- radio button for credit card type, image for visa card -->
+            <input type="radio" name="cardType">
+            <img src="images/visa.png" alt="Visa card" title="Visa card" width="30"><br>
+
+			<!-- radio button for credit card type, image for visa debit card -->
+            <input type="radio" name="cardType">
+            <img src="images/visaDebit.png" alt="Visa debit" title="Visa debit" width="30"><br>
+
+			<!-- radio button for credit card type, image for mastercard -->
+            <input type="radio" name="cardType">
+            <img src="images/masterCard.png" alt="Master card" title="Master card" width="30"><br>
+
+			<!-- radio button for credit card type, image for American Express card -->
+            <input type="radio" name="cardType">
+            <img src="images/amEx.jpg" alt="American express" title="American express" width="30"><br>
+
+			<!-- number input type for credit card number -->
+            <input type="number" name="creditCardNumber" placeholder="Enter Card Number" required> Credit Card Number<br>
+            <br>
+			
+			<!-- select drop down box for expiry year of card, set to 2024 default -->
+            Expiry Year:
+            <select name="expiryYear">
+                <option value="2024" selected>2024</option>
+				<option value="2025" >2025</option>
+                <option value="2026" >2026</option>
+                <option value="2027" >2027</option>
+                <option value="2028" >2028</option>
+                <option value="2029" >2029</option>
+            </select>
+            <br><br>
+
+			<!-- select drop down box for expiry month of card -->
+            Expiry Month:
+            <select name="expiryMonth">
+                <option value="January" >January</option>
+                <option value="February" >February</option>
+                <option value="March" >March</option>
+                <option value="April" >April</option>
+                <option value="May" >May</option>
+                <option value="June" >June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+			<br><br>
+		
+		<!-- submit button with text to submit card details -->
+        <input type="submit" value="Submit Card Details">
+	</fieldset>
+    </form>
+	</div>
+	<!-- button links to home page -->
+          <div class="mt-3 text-center">
+            <p><a href="home" class="btn btn-primary d-block mx-auto">Back to Home Page</a></p>
+          </div>
+	<!-- break of 20 px from class to page bottom-->
+	<br style="margin-bottom: 20px">
+	</div>
+    </div>
+	<!-- end of background div -->
+	</div>
+</body>
+</html>
+
+
+
+<script>
+
+    /* javascript logic for extrapolating price and product from 		    localstorage and outputting the total cost in cart. Displaying result in html & CSS above. Reference to lectures in videos from week 13 for help with javascript. 
+	*/
+
+
+
+    // assign variable to hold values of items as they are totalled
+    let price_totalItems = 0;
+    /* loop through all products (i) in local storage, items have
+       index numbers in storage so we can iterate through them with 'for loop'
+	*/
+    for( i= 0; i < localStorage.length; i++ ){
+        // let 'product' be each local storage key (each product name at index[i])
+        let product = localStorage.key(i);
+        //console.log(product); // check in console
+		   
+		   
+        // extract value from the key, convert back into an object
+        let content = JSON.parse( localStorage.getItem(product) );
+        //console.log(content); // check in console
+
+        // calculate quantity multiply by price assigned to 'total_cost' 
+        let total_cost = ( content.quan * content.p );
+        // Add current total to previous totals as the loop iterates
+        price_totalItems += total_cost;
+		
+        // if statement: if quantity is greater than 0 then..
+        if ( content.quan > 0 ) {
+		
+         /* using DOM query output to page each product and appended quantity equalling total cost, set to 2 decimal places
+		 */
+         document.getElementById("cart_items").innerHTML += product + " x " + content.quan + " = € " + (total_cost).toFixed(2) + "<br>";
+        }
+		
+        /* Using DOM query output the total price of all summed up item totals, display to 2 decimal places
+		*/
+         document.getElementById("cost_total").innerHTML = " Total Cost = € " + price_totalItems.toFixed(2);
+		 }
+    
+
+
+
+</script>

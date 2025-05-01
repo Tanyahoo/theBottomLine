@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	
+    <!-- This 'viewport' allows for CSS to make it responsive for mobiles-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Knickers EJS</title>
+	
+    <!-- The link included below, all for us to have bootstrap utilised on this html page. This link is for our CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	
+ <style>
+	
+	
+	
+		/* class used to impose a white translucent veil on contained elements  */
+        .content-wrapper {
+            background-color: rgba(255, 255, 255, 0.8); /* White background with 80% opacity */
+            padding: 20px; /* Add padding to create space */
+            border-radius: 10px; /* Add rounded corners to the white background */
+        }
+		
+		
+		
+		/*  body takes up the full height of the viewport, removing margins  */
+        body, html {
+            height: 100%; /* Set body and html height to 100% */
+            margin: 0; /* Remove default margins */
+            padding: 0; /* Remove default padding */
+        }
+		
+		
+		
+		/* class to contain carousel set to occupy full viewpoint, put into background */
+        .carousel-container {
+            position: fixed; /* Fixed position to cover the whole viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Set container height to 100% */
+            overflow: hidden; /* Hide overflow to prevent scrolling */
+            z-index: -1; /* Push the carousel to the background */
+        }
+		
+		
+		
+		/*  ID to target myCarousel elements */
+        #myCarousel {
+            width: 100%; /* Set carousel width to 100% */
+            height: 100%; /* Set carousel height to 100% */
+        }
+		
+		
+		
+		/* Wrapper class to stylize all images to full width and height*/
+        .carousel-inner {
+            width: 100%;
+            height: 100%; /* Set carousel inner height to 100% */
+        }
+		
+		
+		
+		/* Class to set all images to consistent size, cover full viewpoint */
+        .carousel-item img {
+            width: 100%;
+            height: 100%; /* Set image height to 100% */
+            object-fit: cover; /* Ensure images cover the whole area */
+        }
+		
+		
+		
+    </style>
+	
+</head>
+
+
+<body>
+
+
+<!-- Carousel code from https://www.w3schools.com/bootstrap/bootstrap_carousel.asp -->
+<div class="carousel-container">
+	<!-- id and class for carousel elements, not my code, sourced from ref above -->
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+	
+        <!-- List of indicators for direction of slides moving-->
+        <ol class="carousel-indicators">
+            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+			<li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+			<li data-bs-target="#myCarousel" data-bs-slide-to="4"></li>
+			<li data-bs-target="#myCarousel" data-bs-slide-to="5"></li>
+			<li data-bs-target="#myCarousel" data-bs-slide-to="6"></li>
+			
+        </ol>
+
+        <!-- Wrapper for slides/images-->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+			    <!-- image and alt tag-->
+                <img src="carousel/31.jpg" alt="Knickers with Sand">
+            </div>
+			
+            <div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/26.jpg" alt="Black and White Image of Underwear">
+            </div>
+			
+            <div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/27.jpg" alt="Bum with Leaves">	
+            </div>
+			
+			<div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/24.jpg" alt="Thong Showing">	
+            </div>
+			
+			<div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/50.jpg" alt="Girl in Green Satin Underwear">	
+            </div>
+			
+			<div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/32.jpg" alt="Black and White Image of Bums">
+			</div>	
+        
+			<div class="carousel-item">
+				<!-- image and alt tag-->
+                <img src="carousel/12.jpg" alt="Flowers in Knickers">
+			</div>	
+        </div>
+
+        <!-- Left and right buttons, code from https://www.w3schools.com/bootstrap/bootstrap_carousel.asp -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+<!-- Bootstrap container to align elements within -->
+<div class="container-fluid d-flex justify-content-center align-items-center h-100">
+    <div class="row">
+	
+		<!-- class to centre Grid to middle of page -->
+        <div class="col-md-6 offset-md-3">
+		
+            <div class="content-wrapper">
+			
+			<!-- placeholders for importing from database product, description, image and price -->
+                <h1 class="text-center" id="product"><%= myProduct %></h1>
+                <p class="text-center"><%= description %></p>
+                <img src="images/<%= myImage %>" class="img-fluid mx-auto d-block" style="max-width: 250px;">
+                <h5 class="text-center">Price €</h5><h5 class="text-center" id="price"><%= myPrice %></h5>
+				
+				<!-- Select drop down box with 10 options, ID used in script below-->
+                <select id="quantity" name="quantity">
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                
+				
+				<!-- Create an onclick event via button, to call function below -->
+                <button onclick="addToCart()" class="btn btn-primary">Add to Cart</button>
+				<a href="checkout.html" class="btn btn-warning">Check out</a>
+                <br><br>
+				
+				<!-- Link to home page via button -->
+                <a href="home" class="btn btn-secondary d-block mx-auto">Back to Home Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- the 'script' for js bundle accessed via CDN link below-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+
+    function addToCart(){
+        let product = document.getElementById("product").innerHTML;
+        let quantity = document.getElementById("quantity").value;
+        let price = document.getElementById("price").innerHTML;
+        let quan_price = {p: price, quan: quantity};
+        localStorage.setItem(product, JSON.stringify(quan_price));
+    }
+</script>
+</html>

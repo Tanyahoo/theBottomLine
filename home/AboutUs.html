@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- this 'viewport' allows for CSS to make view change width at different breakpoints -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>About Us page</title>
+  
+  <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+ <style>
+ 
+ 
+	  /* fixed background to cover whole page, 100% viewposrt height */
+      body {
+      background-image: url('images/about2.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; 
+      height: 100vh; 
+      }
+
+
+	  /* wrapper for placement and styling contents */
+      .content-wrapper {
+	  /* space 20px to top of page */
+	  margin-top: 20px; 
+	  /* space 50px to bottom of page */
+	  margin-bottom: 50px; 
+	  /* white background for text with 85% opacity */
+      background-color: rgba(255, 255, 255, 0.85); 
+	  /* padding of 20px*/
+      padding: 20px;
+	  /* add rounded corners to the faded background behind text */ 
+      border-radius: 10px; 
+      }
+	
+	
+	
+  </style>
+</head>
+
+
+<body>
+
+  <!-- container for bootstrap set to be responsive -->
+  <div class="container-fluid">
+	
+	  <!-- have row content 6 columns across, 3 spare each side-->
+      <div class="col-md-6 offset-md-3">
+	  
+	    <!-- wrapper for styling text content inside-->
+        <div class="content-wrapper">
+          <h1 class="text-center">What About Us?</h1>
+			  <br>
+			
+				<!-- centre text for header and paragraph -->
+				<h4 class="text-center">Our Story</h4>
+				<p class="text-center">Founded in a cozy little shed, <i>The Bottom Line</i> began its journey as a penchant and a passion for creating beautiful undergarments. What started as a humble endeavor quickly grew into a beloved personalised niche, cherished for its attention to detail and commitment to quality.</p>
+				<br>
+				
+				<!-- centre text for header and paragraph -->
+				<h4 class="text-center">Our Commitment</h4>
+				<p class="text-center">At <i>The Bottom Line</i>, we're more than just a lingerie brand – we're a community. As founder, I personally try on every single style of underwear before I add it to our collection. Because if it isn't good enough for me, how can it be good enough for you?  You matter most, which is also why we strive to provide exceptional customer service, personalized recommendations, and a supportive environment where everyone feels welcome and valued.</p>
+				<br>
+
+				<!-- centre text for header and paragraph, includes hyperlink to Member's Page -->
+				<h4 class="text-center">Join Us!</h4>
+				<p class="text-center">Whether you're seeking the perfect pair of knickers for a special occasion or simply treating yourself to a little luxury, we invite you to explore our exquisite collection on special offer via our <a href="membership.html">Member's Club</a>, and discover the difference that handcrafted elegance can make. Thank you for choosing <i>The Bottom Line</i> – where your underwear needs are covered, beautifully.</p>
+				<br>
+
+			<!-- button linking to home page -->
+            <p><a href="home" class="btn btn-primary d-block mx-auto">Back to Home Page</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JavaScript and jQuery in a bundle via CND -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
