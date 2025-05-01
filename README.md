@@ -1,7 +1,7 @@
 # Web Application Development Project Submission – 2024
 
 **Name:** Tanya Costello  
-**Student ID:** G00317831  
+
 **Date:** May 16th, 2024
 
 ---
